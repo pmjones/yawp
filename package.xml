@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
+<!-- $Id: package.xml,v 1.6 2005/10/14 14:40:42 pmjones Exp $ -->
+<package version="1.0">
+	<name>Yawp</name>
+	<summary>Yet Another Web Programming foundation for PHP.</summary>
+	<description>
+		Yawp is "Yet Another Web Programming" foundation class for web applications.  In a single class file, it provides...
+		
+		* A unified configuration file for your Yawp application with safe accessor methods.
+		* Optional variable dumper via PEAR Var_Dump and a convenience method.
+		* Optional time tracker via PEAR Benchmark_Timer and convenience methods.
+		* Optional authentication via PEAR Auth and convenience methods.
+		* Optional creation of a PEAR DB instance as a Yawp property.
+		* Optional creation of a PEAR Cache_Lite instance as a Yawp property and convenience methods
+		* Optional creation of a composite PEAR Log object as a Yawp property, and a convenience method to log a message to them all at once.
+		* "Hooks" for executing customized scripts on login and logout, authErr (i.e., wrong login, idle, or expire), after full start, and before full stop.
+		* Convenience methods for accessing $_SERVER['PATH_INFO'], $_GET, and $_POST elements in an XSS-safe manner, and returning of default values when the element does not exist.
+	</description>
+	<maintainers>
+		<maintainer>
+			<user>pmjones</user>
+			<name>Paul M. Jones</name>
+			<email>pmjones@ciaweb.net</email>
+			<role>lead</role>
+		</maintainer>
+	</maintainers>
+	<release>
+		<version>1.2.0</version>
+		<date>2005-10-14</date>
+		<license>LGPL</license>
+		<state>stable</state>
+		<notes>
+			* Fixed bug revealed by PHP 4.4.x and 5.0.x when getObject()
+			did not return an object ("only variables can be returned by
+			reference).
+			
+			* Added major patch to allow 'prep' script hooks to execute
+			before Yawp begins creating its internal objects; this
+			allows you to use your own customized replacement objects
+			for Auth, DB, etc.  Functionality and code provided by
+			Justin Randell; thanks, Justin.
+		</notes>
+		<filelist>
+			<file role="php" name="Yawp.php" />
+			<file role="php" name="Yawp/Table.php" />
+			<file role="doc" name="docs/Yawp.conf-dist.php" />
+		</filelist>
+		<deps>
+			<dep type="php" rel="ge" version="4.1.0" optional="no" />
+			<dep type="pkg" rel="has" optional="no">Auth</dep>
+			<dep type="pkg" rel="has" optional="no">Benchmark</dep>
+			<dep type="pkg" rel="has" optional="no">Cache_Lite</dep>
+			<dep type="pkg" rel="has" optional="no">DB</dep>
+			<dep type="pkg" rel="has" optional="yes">DB_Table</dep>
+			<dep type="pkg" rel="has" optional="no">Log</dep>
+			<dep type="pkg" rel="has" optional="no">Var_Dump</dep>
+		</deps>
+	</release>
+</package>
